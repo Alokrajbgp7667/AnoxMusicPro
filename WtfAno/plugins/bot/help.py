@@ -47,9 +47,9 @@ async def helper_private(
 @app.on_message(filters.regex("Page1") & ~BANNED_USERS)
 @languageCB
 async def overall_stats(client, CallbackQuery, _):
-med = InputMediaPhoto(media=config.REPO_IMG_URL)
-upl = back_stats_buttons(_)
-        await CallbackQuery.edit_message_media(media=med, reply_markup=upl)
+    med = InputMediaPhoto(media=config.REPO_IMG_URL)
+    upl = back_stats_buttons(_)
+    await CallbackQuery.edit_message_media(media=med, reply_markup=upl)
 
 @app.on_message(filters.command(["help"]) & filters.group & ~BANNED_USERS)
 @LanguageStart
