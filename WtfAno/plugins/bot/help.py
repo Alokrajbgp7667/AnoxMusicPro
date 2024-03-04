@@ -48,9 +48,12 @@ async def helper_private(
 @app.on_callback_query(filters.regex("Page1"))
 @languageCB
 async def page1(client, CallbackQuery, _):
+    callback_data = CallbackQuery.data.strip()
+    cb = callback_data.split(None, 1)[1]
     upl = back_stats_buttons(_)
     med = InputMediaPhoto(media=config.REPO_IMG_URL, caption="text")
-    await CallbackQuery.edit_message_media(media=med, reply_markup=upl)
+    if cb == "hb1":
+        await CallbackQuery.edit_message_media(media=med, reply_markup=upl)
 
 
 @app.on_message(filters.command(["help"]) & filters.group & ~BANNED_USERS)
