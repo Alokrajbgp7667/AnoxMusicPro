@@ -43,17 +43,15 @@ async def helper_private(
             caption=_["help_1"].format(SUPPORT_CHAT),
             reply_markup=keyboard,
         )
+
+
 @app.on_callback_query(filters.regex("Page1"))
 @languageCB
 async def page1(client, CallbackQuery, _):
     upl = back_stats_buttons(_)
     med = InputMediaPhoto(media=config.REPO_IMG_URL, caption="text")
-    try:
-        await CallbackQuery.edit_message_media(media=med, reply_markup=upl)
-    except MessageIdInvalid:
-        await CallbackQuery.message.reply_photo(
-            photo=config.REPO_IMG_URL, caption=caption, reply_markup=upl
-        )
+    await CallbackQuery.edit_message_media(media=med, reply_markup=upl)
+
 
 @app.on_message(filters.command(["help"]) & filters.group & ~BANNED_USERS)
 @LanguageStart
