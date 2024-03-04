@@ -44,19 +44,13 @@ async def helper_private(
             reply_markup=keyboard,
         )
 
-@app.on_message(filters.regex("Page1") & ~BANNED_USERS)
-@languageCB
-async def Page1(client, CallbackQuery, _):
-    med = InputMediaPhoto(media=config.REPO_IMG_URL)
-    upl = back_stats_buttons(_)
-    if callback_data = "Page1"
-       await CallbackQuery.edit_message_media(media=med, reply_markup=upl)
 
 @app.on_message(filters.command(["help"]) & filters.group & ~BANNED_USERS)
 @LanguageStart
 async def help_com_group(client, message: Message, _):
     keyboard = private_help_panel(_)
     await message.reply_text(_["help_2"], reply_markup=InlineKeyboardMarkup(keyboard))
+
 
 @app.on_callback_query(filters.regex("help_callback") & ~BANNED_USERS)
 @languageCB
