@@ -10,7 +10,6 @@ from WtfAno.utils.decorators.language import LanguageStart, languageCB
 from WtfAno.utils.inline.help import help_back_markup, private_help_panel
 from config import BANNED_USERS, START_IMG_URL, SUPPORT_CHAT, REPO_IMG_URL
 from strings import get_string, helpers
-from WtfAno.utils.inline.stats import back_stats_buttons, stats_buttons
 
 @app.on_message(filters.command(["help"]) & filters.private & ~BANNED_USERS)
 @app.on_callback_query(filters.regex("settings_back_helper") & ~BANNED_USERS)
@@ -43,17 +42,6 @@ async def helper_private(
             caption=_["help_1"].format(SUPPORT_CHAT),
             reply_markup=keyboard,
         )
-
-
-@app.on_callback_query(filters.regex("Page1"))
-@languageCB
-async def page1(client, CallbackQuery, _):
-    callback_data = CallbackQuery.data.strip()
-    cb = callback_data.split(None, 1)[1]
-    upl = back_stats_buttons(_)
-    med = InputMediaPhoto(media=config.REPO_IMG_URL, caption="text")
-    if cb == "hb1":
-        await CallbackQuery.edit_message_media(media=med, reply_markup=upl)
 
 
 @app.on_message(filters.command(["help"]) & filters.group & ~BANNED_USERS)
@@ -99,3 +87,4 @@ async def helper_cb(client, CallbackQuery, _):
         await CallbackQuery.edit_message_text(helpers.HELP_14, reply_markup=keyboard)
     elif cb == "hb15":
         await CallbackQuery.edit_message_text(helpers.HELP_15, reply_markup=keyboard)
+        
